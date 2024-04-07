@@ -1,6 +1,6 @@
 // Native import
 import React, { useEffect, useState } from 'react';
-import { LogBox, Platform, StatusBar } from 'react-native';
+import { Linking, LogBox, Platform, StatusBar } from 'react-native';
 
 // Navigation import
 import TabStack from './src/navigation/stacks/TabStack';
@@ -26,10 +26,39 @@ import * as constants from './src/constants';
 import SplashScreen from 'react-native-splash-screen';
 import { Mode, ThemeContext } from './src/context/ThemeContext';
 import { Storage } from './src/services/storage';
+import { Theme } from './src/config/theme';
 
 const App = () => {
 
+  const linking = {
+    prefixes: ['newsapp://', 'https://newsapp.ae'],
+    config: {
+      screens: {
+
+      }
+    },
+    async getInitialURL() {
+
+      let initialUrl: any = await Linking.getInitialURL();
+
+      if (!initialUrl) { return }
+
+      setTimeout(() => {
+        let urlData: any = getURLComponentAndParameter(initialUrl);
+
+      }, 500);
+
+      return initialUrl;
+    },
+  };
+
+  // Get the required URL components
+  const getURLComponentAndParameter = (initialUrl: string) => {
+    return [];
+  }
+
   const [theme, setTheme] = useState<{ mode: Mode }>({ mode: "dark" });
+  const activeColors = Theme[theme.mode];
 
   const updateTheme = (newTheme: { mode: Mode } | undefined) => {
     let mode: Mode;
@@ -63,7 +92,7 @@ const App = () => {
     true,
   );
   if (Platform.OS === constants.PLATFORM.ANDROID) {
-    // StatusBar.setBackgroundColor(theme.$lightBlackColor);
+    StatusBar.setBackgroundColor(activeColors.tint);
   }
 
   LogBox.ignoreAllLogs(true);
