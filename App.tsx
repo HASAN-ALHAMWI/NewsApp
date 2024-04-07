@@ -92,7 +92,7 @@ const App = () => {
     true,
   );
   if (Platform.OS === constants.PLATFORM.ANDROID) {
-    StatusBar.setBackgroundColor(activeColors.tint);
+    StatusBar.setBackgroundColor(activeColors.primary);
   }
 
   LogBox.ignoreAllLogs(true);
