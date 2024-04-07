@@ -10,5 +10,5 @@ export const DARK_MODE_ICON = require('./../assets/common/night-mode.png');
 
 // Tab icons
 export const NEWS_ICON = require('./../assets/tab/ic_news.png');
-export const SETTINGS_ICON = require('./../assets/common/settings_Icon.png');
+export const SETTINGS_ICON = require('./../assets/tab/ic_settings.png');
 
